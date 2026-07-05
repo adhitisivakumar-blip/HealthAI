@@ -153,15 +153,37 @@ http://127.0.0.1:5000
 > Screenshots of the following pages are uploaded for reference.
 
 - 🏠 Landing Page
+  <img width="937" height="436" alt="Screenshot 2026-06-24 230305" src="https://github.com/user-attachments/assets/de08c9d2-1317-4283-8faf-e0931dc332b9" />
+
 - 🔐 Login Page
+  <img width="955" height="428" alt="Screenshot 2026-06-24 230325" src="https://github.com/user-attachments/assets/594094e5-55c5-4240-8d07-051f15e856b5" />
+
 - 📝 Registration Page
+  <img width="935" height="425" alt="Screenshot 2026-07-05 201447" src="https://github.com/user-attachments/assets/3e10992f-f293-4c73-b3dd-eef7ebca2820" />
+
 - 👤 Patient Dashboard
+  <img width="946" height="434" alt="Screenshot 2026-06-24 230437" src="https://github.com/user-attachments/assets/f8993e10-1dde-4019-85ba-264037f05da8" />
+
 - 👨‍⚕️ Doctor Dashboard
+  <img width="932" height="436" alt="Screenshot 2026-06-24 230346" src="https://github.com/user-attachments/assets/fe6f589b-4c6a-4693-a72b-483e13fb6726" />
+  <img width="929" height="419" alt="Screenshot 2026-06-24 230410" src="https://github.com/user-attachments/assets/53129e34-c692-4329-8433-29cdfb5beca1" />
+
 - 🤖 Disease Prediction Interface
+  <img width="933" height="418" alt="Screenshot 2026-06-24 230535" src="https://github.com/user-attachments/assets/478c5b0d-acb2-48ff-acfb-ed088c733f55" />
+  <img width="761" height="422" alt="Screenshot 2026-06-24 230657" src="https://github.com/user-attachments/assets/0d646cb1-1187-412d-a07c-64000ee0a7ab" />
 - 📅 Appointment Booking
+  <img width="876" height="442" alt="Screenshot 2026-06-24 230756" src="https://github.com/user-attachments/assets/e21c99f8-9f2b-48c4-abf3-4dd0a9d0ae9f" />
+  <img width="933" height="401" alt="Screenshot 2026-06-24 230811" src="https://github.com/user-attachments/assets/8966865d-12cf-41d8-93ef-ea043ad54639" />
 - 💬 AI Chatbot
+  <img width="305" height="353" alt="Screenshot 2026-06-24 230731" src="https://github.com/user-attachments/assets/3b2dcbb2-4471-43ca-b0db-1bdb39d4e374" />
 - 📄 Healthcare Report
+  <img width="916" height="423" alt="Screenshot 2026-06-24 230458" src="https://github.com/user-attachments/assets/5fe67769-b576-42fd-b90c-84d43310893f" />
+<img width="232" height="278" alt="Screenshot 2026-07-05 202621" src="https://github.com/user-attachments/assets/5f7094e0-35e4-46f5-b6d9-bea06eb1a162" />
 - 📊 Analytics Dashboard
+  <img width="932" height="436" alt="Screenshot 2026-06-24 230346" src="https://github.com/user-attachments/assets/661b1c36-e4eb-4b2c-a0ad-695b81e437b9" />
+  <img width="946" height="434" alt="Screenshot 2026-06-24 230437" src="https://github.com/user-attachments/assets/26ea7fc1-a7e2-43e0-8f1a-1d59d7d9cc02" />
+
+
 
 ---
 

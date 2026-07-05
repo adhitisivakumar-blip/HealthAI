@@ -1,0 +1,10 @@
+flask
+flask-mysqldb
+flask-login
+pandas
+numpy
+scikit-learn
+matplotlib
+plotly
+reportlab
+joblib

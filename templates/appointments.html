@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Appointments | HealthAI</title>
+
+    <!-- BOOTSTRAP -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GOOGLE FONT -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+
+            background:
+            linear-gradient(
+                135deg,
+                #020617,
+                #0f172a,
+                #1e3a8a,
+                #2563eb
+            );
+
+            min-height:100vh;
+
+            color:white;
+
+            overflow-x:hidden;
+        }
+
+        /* HEADER */
+
+        .top-bar{
+
+            padding:30px 50px;
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+        }
+
+        .logo{
+
+            font-size:34px;
+
+            font-weight:700;
+        }
+
+        .logo i{
+
+            color:#14b8a6;
+        }
+
+        .back-btn{
+
+            background:rgba(255,255,255,0.1);
+
+            border:none;
+
+            color:white;
+
+            padding:12px 24px;
+
+            border-radius:14px;
+
+            text-decoration:none;
+
+            transition:0.4s;
+        }
+
+        .back-btn:hover{
+
+            background:#2563eb;
+
+            color:white;
+        }
+
+        /* PAGE TITLE */
+
+        .page-title{
+
+            text-align:center;
+
+            margin-top:10px;
+
+            margin-bottom:50px;
+        }
+
+        .page-title h1{
+
+            font-size:60px;
+
+            font-weight:700;
+        }
+
+        .page-title p{
+
+            color:#cbd5e1;
+
+            font-size:18px;
+        }
+
+        /* APPOINTMENT CARD */
+
+        .appointment-card{
+
+            background:rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(18px);
+
+            border-radius:30px;
+
+            padding:30px;
+
+            height:100%;
+
+            transition:0.4s;
+
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .appointment-card:hover{
+
+            transform:translateY(-10px);
+        }
+
+        .patient-name{
+
+            font-size:28px;
+
+            font-weight:700;
+
+            margin-bottom:18px;
+        }
+
+        .patient-name i{
+
+            color:#14b8a6;
+        }
+
+        .info{
+
+            margin-bottom:15px;
+
+            line-height:1.9;
+        }
+
+        .status{
+
+            color:#22c55e;
+
+            font-weight:600;
+
+            margin-top:15px;
+        }
+
+        /* BOOK BUTTON */
+
+        .book-btn{
+
+            width:100%;
+
+            margin-top:20px;
+
+            border:none;
+
+            border-radius:16px;
+
+            padding:15px;
+
+            font-size:17px;
+
+            font-weight:600;
+
+            color:white;
+
+            background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #14b8a6
+            );
+
+            transition:0.4s;
+        }
+
+        .book-btn:hover{
+
+            transform:scale(1.03);
+
+            box-shadow:0 10px 20px rgba(37,99,235,0.4);
+        }
+
+        /* STATS */
+
+        .stats-container{
+
+            margin-bottom:50px;
+        }
+
+        .stat-card{
+
+            background:rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(15px);
+
+            border-radius:25px;
+
+            padding:25px;
+
+            text-align:center;
+
+            box-shadow:0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        .stat-card h2{
+
+            font-size:40px;
+
+            font-weight:700;
+        }
+
+        .stat-card p{
+
+            color:#cbd5e1;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+            HealthAI
+
+        </div>
+
+        <a href="/patient_dashboard" class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Dashboard
+
+        </a>
+
+    </div>
+
+    <!-- PAGE TITLE -->
+
+    <div class="page-title">
+
+        <h1>
+
+            Specialist Appointments
+
+        </h1>
+
+        <p>
+
+            AI Recommended Healthcare Specialists for Patients
+
+        </p>
+
+    </div>
+
+    <!-- STATS -->
+
+    <div class="container stats-container">
+
+        <div class="row">
+
+            <div class="col-md-4 mb-4">
+
+                <div class="stat-card">
+
+                    <h2>300+</h2>
+
+                    <p>Total Appointments</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <div class="stat-card">
+
+                    <h2>95%</h2>
+
+                    <p>Booking Success Rate</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <div class="stat-card">
+
+                    <h2>40+</h2>
+
+                    <p>AI Specialists Available</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- APPOINTMENT CARDS -->
+
+    <div class="container">
+
+        <div class="row">
+
+            {% for row in appointments %}
+
+            <div class="col-md-4 mb-4">
+
+                <div class="appointment-card">
+
+                    <div class="patient-name">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        {{ row[0] }}
+
+                    </div>
+
+                    <hr style="border-color:rgba(255,255,255,0.2);">
+
+                    <div class="info">
+
+                        <b>Disease:</b>
+
+                        {{ row[1] }}
+
+                    </div>
+
+                    <div class="info">
+
+                        <b>Specialist:</b>
+
+                        {{ row[2] }}
+
+                    </div>
+
+                    <div class="status">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        Available for Booking
+
+                    </div>
+
+                    <!-- BOOK FORM -->
+
+                    <form action="/book_appointment" method="POST">
+
+                        <input
+                            type="hidden"
+                            name="patient_name"
+                            value="{{ row[0] }}"
+                        >
+
+                        <input
+                            type="hidden"
+                            name="disease"
+                            value="{{ row[1] }}"
+                        >
+
+                        <input
+                            type="hidden"
+                            name="specialist"
+                            value="{{ row[2] }}"
+                        >
+
+                        <button
+                            type="submit"
+                            class="book-btn"
+                        >
+
+                            <i class="fa-solid fa-calendar-check"></i>
+
+                            Book Appointment
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

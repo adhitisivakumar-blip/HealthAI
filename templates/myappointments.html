@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Appointments | HealthAI</title>
+
+    <!-- BOOTSTRAP -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GOOGLE FONT -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+
+            background:
+            linear-gradient(
+                135deg,
+                #020617,
+                #0f172a,
+                #1e3a8a,
+                #2563eb
+            );
+
+            min-height:100vh;
+
+            color:white;
+        }
+
+        .top-bar{
+
+            padding:30px 50px;
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+        }
+
+        .logo{
+
+            font-size:34px;
+
+            font-weight:700;
+        }
+
+        .logo i{
+
+            color:#14b8a6;
+        }
+
+        .back-btn{
+
+            background:rgba(255,255,255,0.1);
+
+            border:none;
+
+            color:white;
+
+            padding:12px 24px;
+
+            border-radius:14px;
+
+            text-decoration:none;
+        }
+
+        .back-btn:hover{
+
+            background:#2563eb;
+
+            color:white;
+        }
+
+        .title{
+
+            text-align:center;
+
+            margin-bottom:50px;
+        }
+
+        .title h1{
+
+            font-size:58px;
+
+            font-weight:700;
+        }
+
+        .appointment-card{
+
+            background:rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(18px);
+
+            border-radius:28px;
+
+            padding:30px;
+
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+
+            transition:0.4s;
+
+            height:100%;
+        }
+
+        .appointment-card:hover{
+
+            transform:translateY(-8px);
+        }
+
+        .status{
+
+            color:#22c55e;
+
+            font-weight:700;
+
+            margin-top:20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+            HealthAI
+
+        </div>
+
+        <a href="/patient_dashboard" class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Dashboard
+
+        </a>
+
+    </div>
+
+    <!-- TITLE -->
+
+    <div class="title">
+
+        <h1>
+
+            My Booked Appointments
+
+        </h1>
+
+        <p>
+
+            AI Managed Healthcare Scheduling System
+
+        </p>
+
+    </div>
+
+    <!-- APPOINTMENT CARDS -->
+
+    <div class="container">
+
+        <div class="row">
+
+            {% for booking in bookings %}
+
+            <div class="col-md-4 mb-4">
+
+                <div class="appointment-card">
+
+                    <h3>
+
+                        <i class="fa-solid fa-user"></i>
+
+                        {{ booking[0] }}
+
+                    </h3>
+
+                    <hr style="border-color:rgba(255,255,255,0.2);">
+
+                    <p>
+
+                        <b>Disease:</b>
+
+                        {{ booking[1] }}
+
+                    </p>
+
+                    <p>
+
+                        <b>Specialist:</b>
+
+                        {{ booking[2] }}
+
+                    </p>
+
+                    <p class="status">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        {{ booking[3] }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

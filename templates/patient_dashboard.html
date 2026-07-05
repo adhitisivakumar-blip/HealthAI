@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Healthcare Dashboard</title>
+
+    <!-- BOOTSTRAP -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GOOGLE FONT -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CHART JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        *{
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body{
+
+            background: linear-gradient(
+                135deg,
+                #020617,
+                #0f172a,
+                #1e3a8a,
+                #2563eb
+            );
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar{
+
+            width: 270px;
+            height: 100vh;
+
+            position: fixed;
+
+            left: 0;
+            top: 0;
+
+            background: rgba(15,23,42,0.96);
+
+            backdrop-filter: blur(15px);
+
+            padding: 30px 20px;
+
+            box-shadow: 5px 0 20px rgba(0,0,0,0.35);
+
+            z-index: 1000;
+        }
+
+        .sidebar h2{
+
+            color: white;
+
+            text-align: center;
+
+            margin-bottom: 40px;
+
+            font-weight: 700;
+        }
+
+        .sidebar a{
+
+            display: block;
+
+            color: #cbd5e1;
+
+            text-decoration: none;
+
+            padding: 16px;
+
+            margin-bottom: 14px;
+
+            border-radius: 14px;
+
+            transition: 0.3s;
+
+            font-size: 17px;
+        }
+
+        .sidebar a:hover{
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #14b8a6
+            );
+
+            color: white;
+
+            transform: translateX(6px);
+        }
+
+        /* MAIN */
+
+        .main-content{
+
+            margin-left: 290px;
+
+            padding: 30px;
+        }
+
+        /* STAT CARDS */
+
+        .stat-card{
+
+            border-radius: 24px;
+
+            padding: 28px;
+
+            color: white;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+
+            transition: 0.4s;
+        }
+
+        .stat-card:hover{
+
+            transform: translateY(-8px);
+        }
+
+        .card1{
+            background: linear-gradient(135deg,#2563eb,#3b82f6);
+        }
+
+        .card2{
+            background: linear-gradient(135deg,#14b8a6,#0d9488);
+        }
+
+        .card3{
+            background: linear-gradient(135deg,#f59e0b,#f97316);
+        }
+
+        .card4{
+            background: linear-gradient(135deg,#ef4444,#dc2626);
+        }
+
+        .stat-card i{
+
+            font-size: 42px;
+
+            margin-bottom: 18px;
+        }
+
+        /* GLASS CARD */
+
+        .glass-card{
+
+            background: rgba(255,255,255,0.08);
+
+            border-radius: 30px;
+
+            padding: 30px;
+
+            backdrop-filter: blur(15px);
+
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+
+            color: white;
+        }
+
+        /* FORM */
+
+        .form-control,
+        .form-select{
+
+            border-radius: 15px;
+
+            padding: 14px;
+
+            border: none;
+        }
+
+        /* BUTTON */
+
+        .btn-custom{
+
+            background: linear-gradient(
+                135deg,
+                #14b8a6,
+                #2563eb
+            );
+
+            border: none;
+
+            padding: 16px;
+
+            border-radius: 15px;
+
+            font-weight: 600;
+
+            color: white;
+
+            transition: 0.4s;
+
+            font-size: 17px;
+        }
+
+        .btn-custom:hover{
+
+            transform: scale(1.03);
+        }
+
+        /* RESULT CARD */
+
+        .result-card{
+
+            background: white;
+
+            border-radius: 24px;
+
+            padding: 24px;
+
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+
+            transition: 0.4s;
+
+            height: 100%;
+        }
+
+        .result-card:hover{
+
+            transform: translateY(-6px);
+        }
+
+        .result-card h5{
+
+            color: #1e3a8a;
+
+            font-weight: 700;
+
+            margin-bottom: 18px;
+        }
+
+        .result-card p{
+
+            color: #334155;
+
+            font-size: 15px;
+
+            line-height: 1.9;
+        }
+
+        /* SYMPTOMS */
+
+        .symptom-grid{
+
+            max-height: 350px;
+
+            overflow-y: auto;
+
+            background: rgba(255,255,255,0.08);
+
+            padding: 20px;
+
+            border-radius: 20px;
+        }
+
+        .form-check{
+
+            margin-bottom: 12px;
+        }
+
+        .form-check-label{
+
+            color: white;
+        }
+
+        /* CHART */
+
+        .chart-card{
+
+            background: white;
+
+            border-radius: 25px;
+
+            padding: 25px;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* CHATBOT BUTTON */
+
+        .chatbot-button{
+
+            position: fixed;
+
+            bottom: 30px;
+            right: 30px;
+
+            width: 72px;
+            height: 72px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #14b8a6
+            );
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+
+            font-size: 28px;
+
+            cursor: pointer;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+
+            z-index: 9999;
+
+            transition: 0.4s;
+        }
+
+        .chatbot-button:hover{
+
+            transform: scale(1.1);
+        }
+
+        /* CHATBOT WINDOW */
+
+        .chatbot-container{
+
+            position: fixed;
+
+            bottom: 120px;
+            right: 30px;
+
+            width: 380px;
+            height: 540px;
+
+            background: rgba(15,23,42,0.97);
+
+            backdrop-filter: blur(15px);
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            display: none;
+
+            flex-direction: column;
+
+            box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+
+            z-index: 9999;
+        }
+
+        .chatbot-header{
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #14b8a6
+            );
+
+            color: white;
+
+            padding: 18px 22px;
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h5{
+
+            margin: 0;
+
+            font-weight: 600;
+        }
+
+        .chatbot-header span{
+
+            cursor: pointer;
+
+            font-size: 22px;
+        }
+
+        .chatbot-body{
+
+            flex: 1;
+
+            padding: 20px;
+
+            overflow-y: auto;
+
+            color: white;
+        }
+
+        .bot-message{
+
+            background: rgba(255,255,255,0.1);
+
+            padding: 15px;
+
+            border-radius: 15px;
+
+            margin-bottom: 15px;
+
+            line-height: 1.8;
+        }
+
+        .user-message{
+
+            background: #2563eb;
+
+            padding: 15px;
+
+            border-radius: 15px;
+
+            margin-bottom: 15px;
+
+            margin-left: 40px;
+
+            color: white;
+        }
+
+        .chatbot-footer{
+
+            display: flex;
+
+            padding: 15px;
+
+            background: rgba(255,255,255,0.06);
+        }
+
+        .chatbot-footer input{
+
+            flex: 1;
+
+            border: none;
+
+            border-radius: 12px;
+
+            padding: 12px;
+
+            outline: none;
+        }
+
+        .chatbot-footer button{
+
+            margin-left: 10px;
+
+            border: none;
+
+            width: 50px;
+
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #14b8a6
+            );
+
+            color: white;
+
+            font-size: 18px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2>
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+            HealthAI
+
+        </h2>
+
+        <a href="/patient_dashboard">
+            <i class="fa-solid fa-chart-line"></i>
+            Dashboard
+        </a>
+
+        <a href="/profile">
+            <i class="fa-solid fa-user"></i>
+            Profile
+        </a>
+
+        <a href="/predictions">
+            <i class="fa-solid fa-stethoscope"></i>
+            Predictions
+        </a>
+
+        <a href="/reports">
+            <i class="fa-solid fa-file-medical"></i>
+            Reports
+        </a>
+
+        <a href="#" onclick="toggleChatbot()">
+            <i class="fa-solid fa-robot"></i>
+            AI Chatbot
+        </a>
+
+        <a href="/appointments">
+            <i class="fa-solid fa-calendar-check"></i>
+            Appointments
+        </a>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="main-content">
+
+        <!-- TOP STATS -->
+
+        <div class="row mb-4">
+
+            <div class="col-md-3">
+
+                <div class="stat-card card1">
+
+                    <i class="fa-solid fa-user-injured"></i>
+
+                    <h3>240+</h3>
+
+                    <p>Total Patients</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stat-card card2">
+
+                    <i class="fa-solid fa-heart-circle-check"></i>
+
+                    <h3>87%</h3>
+
+                    <p>Recovery Rate</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stat-card card3">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    <h3>18</h3>
+
+                    <p>Critical Alerts</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stat-card card4">
+
+                    <i class="fa-solid fa-brain"></i>
+
+                    <h3>High</h3>
+
+                    <p>Stress Analytics</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FORM -->
+
+        <div class="glass-card">
+
+            <h2 class="mb-4">
+
+                AI Disease Prediction
+
+            </h2>
+
+            <form method="POST">
+
+                <div class="row mb-4">
+
+                    <div class="col-md-4">
+
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="patient_name"
+                            placeholder="Patient Name"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <input
+                            class="form-control"
+                            type="number"
+                            name="age"
+                            placeholder="Age"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select
+                            class="form-select"
+                            name="gender"
+                        >
+
+                            <option>Male</option>
+                            <option>Female</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <h4 class="mb-3">
+
+                    Select Symptoms
+
+                </h4>
+
+                <div class="symptom-grid">
+
+                    <div class="row">
+
+                        {% for symptom in symptoms %}
+
+                        <div class="col-md-4">
+
+                            <div class="form-check">
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    name="{{ symptom }}"
+                                >
+
+                                <label class="form-check-label">
+
+                                    {{ symptom.replace('_',' ') }}
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                <br>
+
+                <button class="btn btn-custom w-100">
+
+                    <i class="fa-solid fa-brain"></i>
+
+                    Predict Disease
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- RESULTS -->
+
+        <div class="row mt-5">
+
+            <div class="col-md-4 mb-4">
+
+                <div class="result-card">
+
+                    <h5>Disease Prediction</h5>
+
+                    <p>{{ result.get('prediction', 'Awaiting AI Prediction') }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <div class="result-card">
+
+                    <h5>Severity</h5>
+
+                    <p>{{ result.get('severity', 'No Severity Analysis Yet') }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <div class="result-card">
+
+                    <h5>Treatment</h5>
+
+                    <p>{{ result.get('treatment', 'Treatment Recommendation Pending') }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <div class="result-card">
+
+                    <h5>Diet Recommendation</h5>
+
+                    <p>{{ result.get('diet', 'Diet Recommendation Pending') }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <div class="result-card">
+
+                    <h5>Stress Analysis</h5>
+
+                    <p>{{ result.get('stress', 'Stress Analysis Pending') }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <div class="result-card">
+
+                    <h5>Emergency Risk</h5>
+
+                    <p>{{ result.get('emergency', 'Emergency Analysis Pending') }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 mb-4">
+
+                <div class="result-card">
+
+                    <h5>Lifestyle Improvement</h5>
+
+                    <p>{{ result.get('lifestyle', 'Lifestyle Suggestions Pending') }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 mb-4">
+
+                <div class="result-card">
+
+                    <h5>Appointment Recommendation</h5>
+
+                    <p>{{ result.get('appointment', 'Appointment Recommendation Pending') }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 mb-4">
+
+                <div class="result-card">
+
+                    <h5>Treatment Success Probability</h5>
+
+                    <p>{{ result.get('success_probability', 'Probability Analysis Pending') }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 mb-4">
+
+                <div class="result-card">
+
+                    <h5>Similar Patient Matching</h5>
+
+                    <p>{{ result.get('similar_case', 'Matching Analysis Pending') }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-12 mb-4">
+
+                <div class="result-card">
+
+                    <h5>Drug Interaction Checker</h5>
+
+                    <p>{{ result.get('drug_interaction', 'Drug Interaction Analysis Pending') }}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- REPORT BUTTON -->
+
+        <a href="/generate_report">
+
+            <button class="btn btn-danger w-100 mb-5">
+
+                <i class="fa-solid fa-file-pdf"></i>
+
+                Download AI Healthcare Report
+
+            </button>
+
+        </a>
+
+        <!-- CHART -->
+
+        <div class="chart-card">
+
+            <h3 class="mb-4">
+
+                Healthcare Analytics Dashboard
+
+            </h3>
+
+            <canvas id="healthChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <!-- CHATBOT FLOATING BUTTON -->
+
+    <div class="chatbot-button" onclick="toggleChatbot()">
+
+        <i class="fa-solid fa-robot"></i>
+
+    </div>
+
+    <!-- CHATBOT -->
+
+    <div class="chatbot-container" id="chatbotBox">
+
+        <div class="chatbot-header">
+
+            <h5>
+
+                <i class="fa-solid fa-robot"></i>
+
+                HealthAI Assistant
+
+            </h5>
+
+            <span onclick="toggleChatbot()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </span>
+
+        </div>
+
+        <div class="chatbot-body" id="chatBody">
+
+            <div class="bot-message">
+
+                Hello 👋<br><br>
+
+                I am your AI Healthcare Assistant.<br><br>
+
+                Ask me about:
+                <ul>
+                    <li>Diabetes</li>
+                    <li>Stress</li>
+                    <li>Heart Disease</li>
+                    <li>Diet</li>
+                    <li>Exercise</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="chatbot-footer">
+
+            <input
+                type="text"
+                id="chatInput"
+                placeholder="Ask your healthcare question..."
+            >
+
+            <button onclick="sendMessage()">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPT -->
+
+    <script>
+
+        // CHART
+
+        const ctx = document.getElementById('healthChart');
+
+        new Chart(ctx, {
+
+            type: 'bar',
+
+            data: {
+
+                labels: [
+
+                    'Diabetes',
+                    'Hypertension',
+                    'Heart Disease',
+                    'Stress Cases'
+
+                ],
+
+                datasets: [{
+
+                    label: 'Patient Analytics',
+
+                    data: [120,95,70,45],
+
+                    backgroundColor: [
+
+                        '#2563eb',
+                        '#14b8a6',
+                        '#f59e0b',
+                        '#ef4444'
+
+                    ],
+
+                    borderRadius: 12
+
+                }]
+
+            }
+
+        });
+
+        // TOGGLE CHATBOT
+
+        function toggleChatbot(){
+
+            const chatbot =
+                document.getElementById('chatbotBox');
+
+            if(chatbot.style.display === 'flex'){
+
+                chatbot.style.display = 'none';
+
+            }else{
+
+                chatbot.style.display = 'flex';
+            }
+        }
+
+        // SEND MESSAGE
+
+        function sendMessage(){
+
+            const input =
+                document.getElementById('chatInput');
+
+            const chatBody =
+                document.getElementById('chatBody');
+
+            const userText = input.value;
+
+            if(userText.trim() === '') return;
+
+            // USER MESSAGE
+
+            const userMessage =
+                document.createElement('div');
+
+            userMessage.className = 'user-message';
+
+            userMessage.innerHTML = userText;
+
+            chatBody.appendChild(userMessage);
+
+            // BOT RESPONSE
+
+            const botMessage =
+                document.createElement('div');
+
+            botMessage.className = 'bot-message';
+
+            let response = "";
+
+            const text = userText.toLowerCase();
+
+            if(text.includes('diabetes')){
+
+                response =
+                    "Diabetes requires sugar monitoring, low carbohydrate intake and consistent exercise.";
+
+            }
+
+            else if(text.includes('stress')){
+
+                response =
+                    "Stress reduction techniques such as meditation, yoga and healthy sleep are recommended.";
+
+            }
+
+            else if(text.includes('heart')){
+
+                response =
+                    "Heart patients should avoid high cholesterol foods and maintain regular cardiac monitoring.";
+
+            }
+
+            else if(text.includes('diet')){
+
+                response =
+                    "Balanced nutrition with vitamins, proteins and hydration improves overall recovery.";
+
+            }
+
+            else if(text.includes('exercise')){
+
+                response =
+                    "Walking, yoga and cardiovascular exercise improve long-term health outcomes.";
+
+            }
+
+            else{
+
+                response =
+                    "Please consult a healthcare professional for detailed medical guidance.";
+
+            }
+
+            setTimeout(() => {
+
+                botMessage.innerHTML = response;
+
+                chatBody.appendChild(botMessage);
+
+                chatBody.scrollTop =
+                    chatBody.scrollHeight;
+
+            }, 500);
+
+            input.value = '';
+        }
+
+    </script>
+
+</body>
+
+</html>
